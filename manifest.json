@@ -4,7 +4,8 @@
   "start_url": "/index.html",
   "scope": "/",
   "display": "standalone",
-  "background_color": "#0a0a0a",
+  "theme_color": "#6a00ff",
+  "background_color": "#0f0026"
   "theme_color": "#00ff9c",
   "description": "Archix UBG - Unblocked Games",
   "orientation": "landscape",
