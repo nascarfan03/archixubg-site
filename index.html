@@ -172,23 +172,17 @@ main {
 
 .player-buttons {
   display: flex;
-  flex-direction: row;
+  flex-direction: row;   /* forces horizontal */
   align-items: center;
   gap: 6px;
 }
 
 .player-bar button {
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  gap: 5px;
-  background: #2a2a40;
-  border: 2px solid #4a1fa8;
-  color: white;
-  padding: 4px 8px;   /* smaller buttons */
-  border-radius: 7px;
-  cursor: pointer;
-  font-size: 12px;    /* smaller text */
-  line-height: 1;
+  justify-content: center;
+  padding: 4px 8px;
+  font-size: 12px;
 }
 	  
 .player-bar button:hover {
