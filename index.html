@@ -181,11 +181,24 @@ main {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 4px 8px;
+  gap: 6px;
+
+  background: #2a2a40;     /* visible background */
+  border: 2px solid #4a1fa8;  /* visible border */
+  color: white;
+
+  padding: 5px 10px;
   font-size: 12px;
+  border-radius: 8px;
+
+  cursor: pointer;
+  white-space: nowrap;
+
+  transition: 0.2s;
 }
-	  
+
 .player-bar button:hover {
+  background: #333355;
   border-color: #a57bff;
   box-shadow: 0 0 6px rgba(123,63,228,0.6);
 }
