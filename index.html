@@ -776,7 +776,7 @@ closeBtn.addEventListener('click', () => {
 
 	  fullscreenBtn.addEventListener('click', () => {
   if (!document.fullscreenElement) {
-    player.requestFullscreen();
+    frame.requestFullscreen().catch(err => console.log(err));
   } else {
     document.exitFullscreen();
   }
