@@ -673,8 +673,9 @@ footer {
 	  <div class="player-bar">
 		<span id="playerTitle">Game</span>
 		<div>
-		  <button id="newTab">↗</button>
-		  <button id="closePlayer">✕</button>
+		  <button id="fullscreen">⛶ Fullscreen</button>
+			<button id="newTab">↗ Open Tab</button>
+			<button id="closePlayer">✕ Close</button>
 		</div>
 	  </div>
 	  <iframe id="playerFrame" scrolling="no"></iframe>
@@ -715,6 +716,7 @@ let frame = document.getElementById('playerFrame');
 const title = document.getElementById('playerTitle');
 const newTab = document.getElementById('newTab');
 const closeBtn = document.getElementById('closePlayer');
+const fullscreenBtn = document.getElementById('fullscreen');
 
 let currentLink = '';
 
@@ -772,6 +774,14 @@ closeBtn.addEventListener('click', () => {
   frame.src = 'about:blank';
 });
 
+	  fullscreenBtn.addEventListener('click', () => {
+  if (!document.fullscreenElement) {
+    player.requestFullscreen();
+  } else {
+    document.exitFullscreen();
+  }
+});
+	  
 overlay.addEventListener('click', () => closeBtn.click());
 
 newTab.addEventListener('click', () => {
