@@ -812,7 +812,16 @@ overlay.addEventListener('click', () => closeBtn.click());
 
 newTab.addEventListener('click', () => {
   if (currentLink) {
+
+    let openLink = currentLink;
+
+    // If it is the iframe page, open the main site instead
+    if (openLink === "https://resonant-moxie-d07aa0.netlify.app/index.html") {
+      openLink = "https://resonant-moxie-d07aa0.netlify.app/";
+    }
+
     const newWindow = window.open('about:blank', '_blank');
+
     if (newWindow) {
       newWindow.document.write(`
         <!DOCTYPE html>
@@ -823,27 +832,25 @@ newTab.addEventListener('click', () => {
           <link rel="icon" href="ACHXUBG.png" type="image/png">
           <style>
             html, body {
-              margin: 0;
-              padding: 0;
-              width: 100%;
-              height: 100%;
-              background: #111;
-              display: flex;
-              justify-content: center;
-              align-items: center;
+              margin:0;
+              padding:0;
+              width:100%;
+              height:100%;
+              background:#111;
             }
             iframe {
-              width: 100%;
-              height: 100%;
-              border: none;
+              width:100%;
+              height:100%;
+              border:none;
             }
           </style>
         </head>
         <body>
-          <iframe src="${currentLink}" scrolling="no"></iframe>
+          <iframe src="${openLink}" scrolling="no"></iframe>
         </body>
         </html>
       `);
+
       newWindow.document.close();
     }
   }
