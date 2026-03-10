@@ -682,9 +682,13 @@ footer {
         <img src="moto.png" alt="undertale">
         <h3>Moto X3M</h3>
 	</div>
-		<div class="game" data-name="Uncanny Cat Golf" data-link="https://resonant-moxie-d07aa0.netlify.app/">
+		<div class="game" data-name="Uncanny Cat Golf" data-link="https://rework-site.vercel.app/https:/archix-ubg.github.io/archixubg-site/opentab.html">
         <img src="catgolf.png" alt="undertale">
         <h3>Uncanny Cat Golf</h3>
+	</div>
+		<div class="game" data-name="R.E.P.O" data-link="https://dashing-fox-3af0eb.netlify.app">
+        <img src="repo.png" alt="undertale">
+        <h3>R.E.P.O</h3>
 	</div>
   </main>
 
@@ -814,7 +818,7 @@ newTab.addEventListener('click', () => {
   if (!currentLink) return;
 
   // Open Uncanny Cat Golf directly
-  if (currentLink === "https://resonant-moxie-d07aa0.netlify.app/") {
+  if (game.dataset.name === "Uncanny Cat Golf") {
     window.open(currentLink, "_blank");
     return;
   }
