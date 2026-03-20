@@ -844,12 +844,26 @@ games.forEach(game => {
     newFrame.style.flex = '1';
     newFrame.style.width = '100%';
     newFrame.style.border = 'none';
-    newFrame.setAttribute(
-	  'sandbox',
-	  'allow-scripts allow-forms'
-	);
-
-	newFrame.allow = "pointer-lock";
+    if (
+	  game.dataset.name === "Five Nights At Epstien's" ||
+	  game.dataset.name === "A Difficult Game About Climbing" ||
+	  game.dataset.name === "Angry Birds" ||
+	  game.dataset.name === "Bit Life" ||
+	  game.dataset.name === "Human Expenditure Program" ||
+	  game.dataset.name === "Dumb Ways To Die" ||
+	  game.dataset.name === "Raldi's Cr*ckhouse" ||
+	  game.dataset.name === "Bad Piggies"
+	) {
+	  newFrame.setAttribute(
+	    'sandbox',
+	    'allow-scripts allow-forms'
+	  );
+	} else {
+	  newFrame.setAttribute(
+	    'sandbox',
+	    'allow-scripts allow-same-origin allow-forms'
+	  );
+	}
 
     if (frame.parentNode) {
       frame.parentNode.replaceChild(newFrame, frame);
