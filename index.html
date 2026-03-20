@@ -844,8 +844,12 @@ games.forEach(game => {
     newFrame.style.flex = '1';
     newFrame.style.width = '100%';
     newFrame.style.border = 'none';
-    // Sandbox to prevent leave-site warnings
-    // newFrame.setAttribute('sandbox', 'allow-scripts allow-same-origin allow-forms');
+    newFrame.setAttribute(
+	  'sandbox',
+	  'allow-scripts allow-forms'
+	);
+
+	newFrame.allow = "pointer-lock";
 
     if (frame.parentNode) {
       frame.parentNode.replaceChild(newFrame, frame);
