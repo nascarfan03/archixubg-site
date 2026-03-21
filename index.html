@@ -27,25 +27,6 @@
 	  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
 	}
 
-	  .center {
-	  display: flex;
-	  flex-direction: column;
-	  align-items: center;
-	  gap: 4px;
-	}
-
-.center h1 {
-  margin: 0;
-  font-size: 18px;
-}
-
-/* GAME COUNT */
-#gameCount {
-  margin: 0;
-  font-size: 12px;
-  color: #ddd;
-}
-	
 	header img {
 	  width: 42px;
 	  height: 42px;
@@ -248,7 +229,6 @@
     <h1>Archix-UBG</h1>
     <div class="search">
       <input id="search" type="text" placeholder="Search games...">
-		<p id="gameCount">Games: 0</p>
     </div>
   </header>
 
@@ -830,18 +810,6 @@ if ("serviceWorker" in navigator) {
   });
 }
 </script>
-	<script>
-		const gameCount = document.getElementById('gameCount');
-		function updateGameCount() {
-	  let visible = 0;
-	
-	  games.forEach(game => {
-	    if (game.style.display !== 'none') visible++;
-	  });
-	
-	  gameCount.textContent = "Games: " + visible;
-	}
-	</script>
 	
   <script>
 const search = document.getElementById('search');
