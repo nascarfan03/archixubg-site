@@ -838,7 +838,7 @@
         <img src="issac.jpg" alt="ltf">
         <h3>Binding of Issac</h3>
       </div>
-		<div class="game" data-name="Lighteners Live +" data-link="https://regal-pithivier-3e90d8.netlify.app">
+		<div class="game" data-name="Lighteners Live +" data-link="https://ubpro.vercel.app/https:/archix-ubg.github.io/archixubg-site/opentab.html">
         <img src="lightlive.png" alt="ltf">
         <h3>Lighteners Live +</h3>
       </div>
@@ -1004,7 +1004,10 @@ newTab.addEventListener('click', () => {
     window.open("https://stirring-axolotl-c593b0.netlify.app/shellbreaker/", "_blank");
     return;
   }
-
+	if (title.textContent === "Lighteners Live +") {
+    window.open("https://regal-pithivier-3e90d8.netlify.app", "_blank");
+    return;
+  }
   const newWindow = window.open("", "_blank");
 
   if (newWindow) {
