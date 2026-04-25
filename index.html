@@ -890,16 +890,6 @@ window.addEventListener("beforeunload", function (e) {
 </script>
 	
 <script>
-if ("serviceWorker" in navigator) {
-  window.addEventListener("load", () => {
-    navigator.serviceWorker.register("./sw.js")
-      .then(reg => console.log("Archix UBG Service Worker registered"))
-      .catch(err => console.log("Service Worker failed:", err));
-  });
-}
-</script>
-	
-  <script>
 const search = document.getElementById('search');
 const games = document.querySelectorAll('.game');
 const player = document.getElementById('player');
@@ -911,6 +901,18 @@ const closeBtn = document.getElementById('closePlayer');
 const fullscreenBtn = document.getElementById('fullscreen');
 
 let currentLink = '';
+
+// 🔥 LIVE CHECK (runs every second)
+setInterval(() => {
+  if (!frame) return;
+
+  try {
+    const src = frame.src || "";
+    if (src.includes("docs.google.com/document")) {
+      frame.src = "about:blank";
+    }
+  } catch (e) {}
+}, 1000);
 
 search.addEventListener('input', () => {
   const value = search.value.toLowerCase();
@@ -927,22 +929,6 @@ games.forEach(game => {
 
     if (game.dataset.name === "Join Our Discord") {
       window.open(link, "_blank");
-      return;
-    }
-
-    // ✅ GOOGLE DOCS CHECK (prevents iframe)
-    if (link.startsWith("https://docs.google.com/document/d/1_FmH3BlSBQI7FGgAQL59-ZPe8eCxs35wel6JUyVaG8Q")) {
-      currentLink = link;
-      title.textContent = game.dataset.name;
-
-      if (frame && frame.parentNode) {
-        frame.parentNode.removeChild(frame);
-      }
-
-      window.open(link, "_blank");
-
-      overlay.style.display = 'block';
-      player.classList.add('active');
       return;
     }
 
@@ -970,11 +956,11 @@ games.forEach(game => {
       newFrame.setAttribute('sandbox', 'allow-scripts allow-forms');
     }
 
-    if (frame && frame.parentNode) {
+    if (frame.parentNode) {
       frame.parentNode.replaceChild(newFrame, frame);
     }
-    frame = newFrame;
 
+    frame = newFrame;
     frame.src = link;
 
     if (game.dataset.name === "A Dance Of Fire And Ice") {
@@ -1051,6 +1037,7 @@ newTab.addEventListener('click', () => {
       </body>
       </html>
     `);
+
     newWindow.document.close();
   }
 });
