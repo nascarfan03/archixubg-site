@@ -924,47 +924,62 @@ games.forEach(game => {
   game.addEventListener('click', () => {
     const link = game.dataset.link;
     if (!link) return;
+
     if (game.dataset.name === "Join Our Discord") {
       window.open(link, "_blank");
       return;
     }
+
+    // ✅ GOOGLE DOCS CHECK (prevents iframe)
+    if (link.startsWith("https://docs.google.com/document/d/1_FmH3BlSBQI7FGgAQL59-ZPe8eCxs35wel6JUyVaG8Q")) {
+      currentLink = link;
+      title.textContent = game.dataset.name;
+
+      if (frame && frame.parentNode) {
+        frame.parentNode.removeChild(frame);
+      }
+
+      window.open(link, "_blank");
+
+      overlay.style.display = 'block';
+      player.classList.add('active');
+      return;
+    }
+
     currentLink = link;
     title.textContent = game.dataset.name;
-	  document.getElementById("downloadBtn").href =
-`https://sdif.netlify.app/?url=${encodeURIComponent(link)}&name=${encodeURIComponent(game.dataset.name)}`;
 
-    // Reset iframe to stop any old scripts or audio
+    document.getElementById("downloadBtn").href =
+      `https://sdif.netlify.app/?url=${encodeURIComponent(link)}&name=${encodeURIComponent(game.dataset.name)}`;
+
     const newFrame = document.createElement('iframe');
     newFrame.id = 'playerFrame';
     newFrame.scrolling = 'no';
     newFrame.style.flex = '1';
     newFrame.style.width = '100%';
     newFrame.style.border = 'none';
-    if (
-	  game.dataset.name === "Five Nights At Epstien's" ||
-	  game.dataset.name === "Angry Birds" ||
-	  game.dataset.name === "Bit Life" ||
-	  game.dataset.name === "Human Expenditure Program" ||
-	  game.dataset.name === "Dumb Ways To Die" ||
-	  game.dataset.name === "Bad Piggies"
-	) {
-	  newFrame.setAttribute(
-	    'sandbox',
-	    'allow-scripts allow-forms'
-	  );
-	}
 
-    if (frame.parentNode) {
+    if (
+      game.dataset.name === "Five Nights At Epstien's" ||
+      game.dataset.name === "Angry Birds" ||
+      game.dataset.name === "Bit Life" ||
+      game.dataset.name === "Human Expenditure Program" ||
+      game.dataset.name === "Dumb Ways To Die" ||
+      game.dataset.name === "Bad Piggies"
+    ) {
+      newFrame.setAttribute('sandbox', 'allow-scripts allow-forms');
+    }
+
+    if (frame && frame.parentNode) {
       frame.parentNode.replaceChild(newFrame, frame);
     }
     frame = newFrame;
 
     frame.src = link;
 
-	  if (game.dataset.name === "A Dance Of Fire And Ice") {
-  		frame.style.zoom = "1.5";
-	  }
-
+    if (game.dataset.name === "A Dance Of Fire And Ice") {
+      frame.style.zoom = "1.5";
+    }
 
     overlay.style.display = 'block';
     player.classList.add('active');
@@ -974,19 +989,20 @@ games.forEach(game => {
 closeBtn.addEventListener('click', () => {
   player.classList.remove('active');
   overlay.style.display = 'none';
-  
-  // Clear iframe safely
-  frame.src = 'about:blank';
+
+  if (frame) {
+    frame.src = 'about:blank';
+  }
 });
 
-	  fullscreenBtn.addEventListener('click', () => {
+fullscreenBtn.addEventListener('click', () => {
   if (!document.fullscreenElement) {
-    frame.requestFullscreen().catch(err => console.log(err));
+    frame?.requestFullscreen().catch(err => console.log(err));
   } else {
     document.exitFullscreen();
   }
 });
-	  
+
 overlay.addEventListener('click', () => closeBtn.click());
 
 newTab.addEventListener('click', () => {
@@ -996,18 +1012,19 @@ newTab.addEventListener('click', () => {
     window.open("https://stirring-axolotl-c593b0.netlify.app/uncannycatgolf/", "_blank");
     return;
   }
-	if (title.textContent === "Project Pitt") {
+  if (title.textContent === "Project Pitt") {
     window.open("https://stirring-axolotl-c593b0.netlify.app/projectpitt/port/", "_blank");
     return;
   }
-	if (title.textContent === "Shell Breaker") {
+  if (title.textContent === "Shell Breaker") {
     window.open("https://stirring-axolotl-c593b0.netlify.app/shellbreaker/", "_blank");
     return;
   }
-	if (title.textContent === "Lighteners Live +") {
+  if (title.textContent === "Lighteners Live +") {
     window.open("https://regal-pithivier-3e90d8.netlify.app", "_blank");
     return;
   }
+
   const newWindow = window.open("", "_blank");
 
   if (newWindow) {
