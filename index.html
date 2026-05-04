@@ -266,7 +266,7 @@
         <img src="gdl.png" alt="gdl">
         <h3>Geometry Dash Lite</h3>
       </div>
-	  <div class="game" data-name="Friday Night Funkin" data-link="https://ubpro.vercel.app/https:/fnf.kdata1.com/2026/FNF/811/">
+	  <div class="game" data-name="Friday Night Funkin" data-link="https://ubpro.vercel.app/https:/archix-ubg.github.io/archixubg-site/self%20hosted/Friday%20Night%20Funkin.html">
         <img src="funkin.png" alt="fnf">
         <h3>Friday Night Funkin</h3>
       </div>
@@ -622,7 +622,7 @@
         <img src="kindergarten.png" alt="undertale">
         <h3>Kindergarten</h3>
     </div>
-		<div class="game" data-name="Hollow Knight" data-link="https://unrivaled-cannoli-39dfcd.netlify.app/hk">
+		<div class="game" data-name="Hollow Knight" data-link="https://frolicking-medovik-b64177.netlify.app">
         <img src="hk.png" alt="undertale">
         <h3>Hollow Knight</h3>
     </div>
@@ -822,7 +822,7 @@
         <img src="pmc.png" alt="ltf">
         <h3>Paper Minecraft</h3>
       </div>
-		<div class="game" data-name="Geometry Dash Full" data-link="https://ubpro.vercel.app/https:/genizymath.github.io/iframe/785-upd.html">
+		<div class="game" data-name="Geometry Dash Full" data-link="https://ubpro.vercel.app/https:/genizymath.github.io/iframe/785-upd2.html">
         <img src="gdfull.png" alt="ltf">
         <h3>Geometry Dash Full (W.I.P)</h3>
       </div>
@@ -837,6 +837,30 @@
 		<div class="game" data-name="Binding of Issac" data-link="https://unrivaled-banoffee-3cb576.netlify.app">
         <img src="issac.jpg" alt="ltf">
         <h3>Binding of Issac</h3>
+      </div>
+		<div class="game" data-name="Lighteners Live +" data-link="https://ubpro.vercel.app/https:/archix-ubg.github.io/archixubg-site/opentab.html">
+        <img src="lightlive.png" alt="ltf">
+        <h3>Lighteners Live +</h3>
+      </div>
+		<div class="game" data-name="Captchaware" data-link="https://starlit-mermaid-33ae23.netlify.app">
+        <img src="captchaware.jpg" alt="ltf">
+        <h3>Captchaware</h3>
+      </div>
+		<div class="game" data-name="Idols Of Ash" data-link="https://vermillion-lolly-beec8b.netlify.app">
+        <img src="ioa.jpg" alt="ltf">
+        <h3>Idols Of Ash</h3>
+      </div>
+		<div class="game" data-name="Schoolboy Runaway" data-link="https://ubpro.vercel.app/https:/archix-ubg.github.io/archixubg-site/self%20hosted/Schoolboy%20Runaway.html">
+        <img src="runaway.jpg" alt="fnf">
+        <h3>Schoolboy Runaway</h3>
+      </div>
+		<div class="game" data-name="Plauge Inc" data-link="https://ubpro.vercel.app/https:/genizymath.github.io/iframe/805.html">
+        <img src="plauge.jpg" alt="fnf">
+        <h3>Plauge Inc</h3>
+      </div>
+		<div class="game" data-name="Infinite Craft" data-link="https://mellifluous-daifuku-cf1847.netlify.app">
+        <img src="infcraft.png" alt="fnf">
+        <h3>Infinite Craft</h3>
       </div>
   </main>
 
@@ -876,7 +900,7 @@ window.addEventListener("beforeunload", function (e) {
 
 });
 </script>
-	
+
 <script>
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", () => {
@@ -887,7 +911,7 @@ if ("serviceWorker" in navigator) {
 }
 </script>
 	
-  <script>
+<script>
 const search = document.getElementById('search');
 const games = document.querySelectorAll('.game');
 const player = document.getElementById('player');
@@ -899,6 +923,18 @@ const closeBtn = document.getElementById('closePlayer');
 const fullscreenBtn = document.getElementById('fullscreen');
 
 let currentLink = '';
+
+// 🔥 LIVE CHECK (runs every second)
+setInterval(() => {
+  if (!frame) return;
+
+  try {
+    const src = frame.src || "";
+    if (src.includes("https://docs.google.com/document/d/1_FmH3BlSBQI7FGgAQL59-ZPe8eCxs35wel6JUyVaG8Q/edit?tab=t.0")) {
+      frame.src = "about:blank";
+    }
+  } catch (e) {}
+}, 1000);
 
 search.addEventListener('input', () => {
   const value = search.value.toLowerCase();
@@ -912,47 +948,46 @@ games.forEach(game => {
   game.addEventListener('click', () => {
     const link = game.dataset.link;
     if (!link) return;
+
     if (game.dataset.name === "Join Our Discord") {
       window.open(link, "_blank");
       return;
     }
+
     currentLink = link;
     title.textContent = game.dataset.name;
-	  document.getElementById("downloadBtn").href =
-`https://sdif.netlify.app/?url=${encodeURIComponent(link)}&name=${encodeURIComponent(game.dataset.name)}`;
 
-    // Reset iframe to stop any old scripts or audio
+    document.getElementById("downloadBtn").href =
+      `https://sdif.netlify.app/?url=${encodeURIComponent(link)}&name=${encodeURIComponent(game.dataset.name)}`;
+
     const newFrame = document.createElement('iframe');
     newFrame.id = 'playerFrame';
     newFrame.scrolling = 'no';
     newFrame.style.flex = '1';
     newFrame.style.width = '100%';
     newFrame.style.border = 'none';
+
     if (
-	  game.dataset.name === "Five Nights At Epstien's" ||
-	  game.dataset.name === "Angry Birds" ||
-	  game.dataset.name === "Bit Life" ||
-	  game.dataset.name === "Human Expenditure Program" ||
-	  game.dataset.name === "Dumb Ways To Die" ||
-	  game.dataset.name === "Bad Piggies"
-	) {
-	  newFrame.setAttribute(
-	    'sandbox',
-	    'allow-scripts allow-forms'
-	  );
-	}
+      game.dataset.name === "Five Nights At Epstien's" ||
+      game.dataset.name === "Angry Birds" ||
+      game.dataset.name === "Bit Life" ||
+      game.dataset.name === "Human Expenditure Program" ||
+      game.dataset.name === "Dumb Ways To Die" ||
+      game.dataset.name === "Bad Piggies"
+    ) {
+      newFrame.setAttribute('sandbox', 'allow-scripts allow-forms');
+    }
 
     if (frame.parentNode) {
       frame.parentNode.replaceChild(newFrame, frame);
     }
-    frame = newFrame;
 
+    frame = newFrame;
     frame.src = link;
 
-	  if (game.dataset.name === "A Dance Of Fire And Ice") {
-  		frame.style.zoom = "1.5";
-	  }
-
+    if (game.dataset.name === "A Dance Of Fire And Ice") {
+      frame.style.zoom = "1.5";
+    }
 
     overlay.style.display = 'block';
     player.classList.add('active');
@@ -962,19 +997,20 @@ games.forEach(game => {
 closeBtn.addEventListener('click', () => {
   player.classList.remove('active');
   overlay.style.display = 'none';
-  
-  // Clear iframe safely
-  frame.src = 'about:blank';
+
+  if (frame) {
+    frame.src = 'about:blank';
+  }
 });
 
-	  fullscreenBtn.addEventListener('click', () => {
+fullscreenBtn.addEventListener('click', () => {
   if (!document.fullscreenElement) {
-    frame.requestFullscreen().catch(err => console.log(err));
+    frame?.requestFullscreen().catch(err => console.log(err));
   } else {
     document.exitFullscreen();
   }
 });
-	  
+
 overlay.addEventListener('click', () => closeBtn.click());
 
 newTab.addEventListener('click', () => {
@@ -984,12 +1020,16 @@ newTab.addEventListener('click', () => {
     window.open("https://stirring-axolotl-c593b0.netlify.app/uncannycatgolf/", "_blank");
     return;
   }
-	if (title.textContent === "Project Pitt") {
+  if (title.textContent === "Project Pitt") {
     window.open("https://stirring-axolotl-c593b0.netlify.app/projectpitt/port/", "_blank");
     return;
   }
-	if (title.textContent === "Shell Breaker") {
+  if (title.textContent === "Shell Breaker") {
     window.open("https://stirring-axolotl-c593b0.netlify.app/shellbreaker/", "_blank");
+    return;
+  }
+  if (title.textContent === "Lighteners Live +") {
+    window.open("https://regal-pithivier-3e90d8.netlify.app", "_blank");
     return;
   }
 
@@ -1019,6 +1059,7 @@ newTab.addEventListener('click', () => {
       </body>
       </html>
     `);
+
     newWindow.document.close();
   }
 });
